@@ -39,40 +39,22 @@ def main():
             cmat_path = os.path.join(cur_rep_data_path,next(\
             (file for file in os.listdir(cur_rep_data_path) if file.endswith('_character_matrix.csv')), None))
             
-            # score_path = os.path.join(cur_res_rep_path, 'RF.csv')
-            # score_path = os.path.join(cur_res_rep_path, 'contract_RF.csv')
-            # score_path = os.path.join(cur_res_rep_path, 'consensus_RF.csv')
-            # score_path = os.path.join(cur_res_rep_path, 'contract_consensus_RF-c1-1.csv')
-            # score_path = os.path.join(cur_res_rep_path, 'contract_strict_consensus_RF.csv')
 
-            # score_path = os.path.join(cur_res_rep_path, 'RF0.csv')
-            # score_path = os.path.join(cur_res_rep_path, 'RFSH.csv')
+            score_path = os.path.join(cur_res_rep_path, 'RF0.csv')
 
-            # score_path = os.path.join(cur_res_rep_path, 'SC-RF0.csv')
-
-            score_path = os.path.join(cur_res_rep_path, 'SC-RFSH.csv')
-
-            true_tree_path = os.path.join(os.path.join(cur_data_path, rep), 'contracted_true_tree.newick')
-
-            # true_tree_path = os.path.join(cur_rep_data_path,next(\
-            # (file for file in os.listdir(cur_rep_data_path) if file.endswith('p0.1_tree.newick')), None))
+            true_tree_path = os.path.join(cur_rep_data_path,next(\
+            (file for file in os.listdir(cur_rep_data_path) if file.endswith('p0.1_tree.newick')), None))
 
 
             star_cdp_tree_path = os.path.join(cur_res_rep_path, 'star_cdp_one_sol.tre')
-            consensus_tree_path = os.path.join(cur_res_rep_path, 'consensus_star_cdp_strict_consensus.tre')
-            # consensus_tree_path = os.path.join(cur_res_rep_path, 'consensus_star_cdp_greedy_consensus.tre')
+           
             data_prefix = folder + "/"+rep
             print(data_prefix)
 
-            if not os.path.exists(score_path) or True:
-                # score_res = sp.run(['python3', comp_exe
-            # , '-t1', true_tree_path, '-t2', star_cdp_tree_path, '-c1','0', '-c2', '0', '-m', cmat_path ,'-r', '0'], capture_output=True, text=True)
+            if not os.path.exists(score_path):
+                score_res = sp.run(['python3', comp_exe
+            , '-t1', true_tree_path, '-t2', star_cdp_tree_path, '-c1','0', '-c2', '0', '-m', cmat_path ,'-r', '0'], capture_output=True, text=True)
             
-                # score_res = sp.run(['python3', comp_exe
-            # , '-t1', true_tree_path, '-t2', star_cdp_tree_path, '-c1','0', '-c2', '1', '-m', cmat_path], capture_output=True, text=True)
-
-                score_res = sp.run(['python3', comp_exe, '-t1', true_tree_path, '-t2', consensus_tree_path, '-c1','0', '-c2', '1', '-m', cmat_path], capture_output=True, text=True)
-
                 if score_res.returncode == 0:
                     score_res = score_res.stdout
                     print(score_res)

@@ -1,12 +1,13 @@
 import os
 import subprocess as sp
 import re
+import dendropy
 import sys
 
 def main():
+    sys.setrecursionlimit(4000)
 
-
-    result_dir = '/fs/cbcb-lab/ekmolloy/jdai123/star-study/result_data_in_startle/startle_ilp'
+    result_dir = '/fs/cbcb-lab/ekmolloy/jdai123/star-study/result_data_in_startle/star_cdp'
 
     data_dir = "/fs/cbcb-lab/ekmolloy/jdai123/star-study/data/sashittal2023startle_data_in_startle"
     
@@ -26,7 +27,7 @@ def main():
             os.mkdir(cur_res_path)
         
         reps = [rep for rep in os.listdir(cur_data_path) if os.path.isdir(os.path.join(cur_data_path, rep))]
-
+        
         num_reps = len(reps)
 
         for rep in reps:
@@ -37,34 +38,36 @@ def main():
             cur_rep_data_path = os.path.join(cur_data_path, rep)
             cmat_path = os.path.join(cur_rep_data_path,next(\
             (file for file in os.listdir(cur_rep_data_path) if file.endswith('_character_matrix.csv')), None))
-
             
-            score_path = os.path.join(cur_res_rep_path, 'RF0.csv')
-
-
-            ilp_tree_path = os.path.join(os.path.join(cur_res_rep_path, 'output'), 'startle_tree.newick')
-
+          
+            score_path = os.path.join(cur_res_rep_path, 'Rand-RF0.csv')
+        
+        
             true_tree_path = os.path.join(cur_rep_data_path,next(\
             (file for file in os.listdir(cur_rep_data_path) if file.endswith('p0.1_tree.newick')), None))
 
+
+            star_cdp_tree_path = os.path.join(cur_res_rep_path, 'star_cdp_random_sol_trees.tre')
+            
             data_prefix = folder + "/"+rep
             print(data_prefix)
 
-            if not os.path.exists(score_path)
-    
+            if not os.path.exists(score_path):
                 score_res = sp.run(['python3', comp_exe
-            , '-t1', true_tree_path, '-t2', ilp_tree_path, '-c1','0', '-c2', '0', '-m', cmat_path], capture_output=True, text=True)
+            , '-t1', true_tree_path, '-t2', star_cdp_tree_path, '-c1','0', '-c2', '0', '-m', cmat_path ,'-r', '0'], capture_output=True, text=True)
+            
+
                 if score_res.returncode == 0:
                     score_res = score_res.stdout
                     print(score_res)
                     [nl, i1, i2, fn, fp, tp, fnrate, fprate,tprate] = [float(x) for x in score_res.split(',')]
                     print(f'{fn}, {fp},{tp}')
 
+
                 else:
                     print("%%")
                     print(score_res.stderr)
-                    # raise Exception("Failed to compute score for " + cur_res_rep_path)
-                    [nl, i1, i2, fn, fp, tp, fnrate, fprate, tprate] = ['N/A' for x in range(9)]
+                    raise Exception("Failed to compute score for " + cur_res_rep_path)
 
             
                 with open(score_path, 'w', newline="") as score_file:
@@ -72,7 +75,6 @@ def main():
                     print(f'write {score_path}')
             #else:
                 #os.remove(score_path)
-
 
 if __name__ == '__main__':
 

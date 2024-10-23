@@ -37,28 +37,32 @@ def main():
             cmat_path = os.path.join(cur_rep_data_path,next(\
             (file for file in os.listdir(cur_rep_data_path) if file.endswith('_character_matrix.csv')), None))
 
-            score_path = os.path.join(cur_res_rep_path, 'RF0.csv')
-           
 
-            true_tree_path = os.path.join(cur_rep_data_path,next(\
-            (file for file in os.listdir(cur_rep_data_path) if file.endswith('p0.1_tree.newick')), None))
+            score_path = os.path.join(cur_res_rep_path, 'sc-RFSH.csv')
+
+            
+            true_tree_path = os.path.join(os.path.join(cur_data_path, rep), 'contracted_true_tree.newick')
 
 
-                    
+
+            all_paup_trees_path = os.path.join(cur_res_rep_path, 'paup_trees.trees')
+            strict_consensus_tree_path = os.path.join(cur_res_rep_path, 'strict_consensus.tre')
+
+            
 
             data_prefix = folder + "/"+rep
             print(data_prefix)
 
-            one_nwk_file = os.path.join(cur_res_rep_path, 'one_nwk.newick')
-
-            if not os.path.exists(one_nwk_file):
-                print(f'missing: {one_nwk_file}')
+            if not os.path.exists(strict_consensus_tree_path):
+                print(f'missing: {strict_consensus_tree_path}')
             else:
                 
-                if not os.path.exists(score_path) or True:
-                    score_res = sp.run(['python3', comp_exe
-            , '-t1', true_tree_path, '-t2', one_nwk_file, '-c1','0', '-c2', '0', '-m', cmat_path], capture_output=True, text=True)
+
+                if not os.path.exists(score_path):
                     
+                    score_res = sp.run(['python3', comp_exe
+            , '-t1', true_tree_path, '-t2', strict_consensus_tree_path, '-c1','0', '-c2', '1', '-m', cmat_path], capture_output=True, text=True)
+
                     if score_res.returncode == 0:
                         score_res = score_res.stdout
                         print(score_res)

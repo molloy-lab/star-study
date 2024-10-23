@@ -32,26 +32,24 @@ def main():
             
             priors_path = os.path.join(cur_rep_data_path,next((file for file in os.listdir(cur_rep_data_path) if file.endswith('_mutation_prior.csv')), None))
        
-            score_path = os.path.join(cur_rep_res_path, 'RF0.csv')
+            score_path = os.path.join(cur_rep_res_path, 'RFSH.csv')
+ 
             
-            
-            
+            true_tree_path = os.path.join( cur_rep_data_path, 'contracted_true_tree.newick')
 
-            true_tree_path = os.path.join(cur_rep_data_path,next(\
-            (file for file in os.listdir(cur_rep_data_path) if file.endswith('p0.1_tree.newick')), None))
-
-        
 
             data_prefix = folder +  '\\' + rep
             print(data_prefix)
 
+            
             one_nwk_file = os.path.join(cur_rep_res_path, 'laml_output-1_trees.nwk')
 
 
             if not os.path.exists(score_path):
-        
-                score_res = sp.run(['python3', comp_exe, '-t1', true_tree_path, '-t2', one_nwk_file, '-c1','0', '-c2', '0', '-m', cmat_path], capture_output=True, text=True)
                     
+                score_res = sp.run(['python3', comp_exe, '-t1', true_tree_path, '-t2', one_nwk_file, '-c1','0', '-c2', '1', '-m', cmat_path], capture_output=True, text=True)
+                    
+
                 if score_res.returncode == 0:
                     score_res = score_res.stdout
                     print(score_res)

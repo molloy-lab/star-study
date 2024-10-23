@@ -26,7 +26,7 @@ def main():
 
         cmat_path = os.path.join(cur_data_path, "startle_format_cmat.csv")
   
-        score_path = os.path.join(cur_res_path, 'sc-RF.csv')
+        score_path = os.path.join(cur_res_path, 'sc-RF0.csv')
 
 
         true_tree_path = os.path.join(cur_data_path, 'true_tree.tre')
