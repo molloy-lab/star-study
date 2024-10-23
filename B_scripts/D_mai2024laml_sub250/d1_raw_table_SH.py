@@ -34,16 +34,16 @@ methods = ['cassiopeia_greedy','startle_nni','laml', 'paup','star_cdp','star_cdp
 
 
 methdo2rf_file = {
-    'cassiopeia-greedy': 'RF0.csv',
-    'startle_nni': 'RF0.csv',
-    'startle_nni_python': 'RF0.csv',
-    'startle_ilp': 'RF0.csv',
-    'laml': 'RF0.csv',
-    'paup': 'RF0.csv',
-    'star_cdp': 'RF0.csv',
-    'star_cdp-rand': 'Rand-RF0.csv',
-    'star_cdp-sc':'sc-RF0.csv',
-    'paup-sc':'sc-RF0.csv'
+    'cassiopeia-greedy': 'RFSH.csv',
+    'startle_nni': 'RFSH.csv',
+    'startle_nni_python': 'RFSH.csv',
+    'startle_ilp': 'RFSH.csv',
+    'laml': 'RFSH.csv',
+    'paup': 'RFSH.csv',
+    'star_cdp': 'RFSH.csv',
+    'star_cdp-rand': 'Rand-RFSH.csv',
+    'star_cdp-sc':'sc-RFSH.csv',
+    'paup-sc':'sc-RFSH.csv'
 
 }
 method2folder = {
@@ -95,7 +95,7 @@ for silencing,dropout in sd_pair:
                         score = Decimal(scf.readline().strip()).quantize(Decimal('0.00'), rounding=ROUND_HALF_UP)
                         table['parsimony-score'].append(score)
 
-                    cur_true_tree_path = os.path.join(cur_data_path,'true_tree.tre')
+                    cur_true_tree_path = os.path.join(cur_data_path,'SH_contract_true_tree.tre')
                     true_tree = ts.read_tree_newick(cur_true_tree_path)
                     num_branches = true_tree.num_nodes(leaves=False, internal=True) - 1
                     table['#branches'].append(num_branches)
