@@ -1,0 +1,88 @@
+import os
+import subprocess as sp
+import shutil
+import pandas as pd
+
+
+def add_outgroup(newick, outgroup='0'):
+    """
+    Adds an outgroup to a Newick string.
+    The Newick tree is assumed to end with a semicolon.
+    The outgroup is added by modifying the base call with a new root that includes the outgroup.
+    """
+    # Remove the last semicolon and then add the outgroup
+    newick_trimmed = newick.strip()[:-1]  # Remove semicolon and any extra whitespace
+    return f"({outgroup},{newick_trimmed});"
+
+def process_newick_file(input_file, output_file, outgroup):
+    """
+    Reads a file with Newick strings, adds an outgroup to each, and writes them to a new file.
+    """
+    with open(input_file, 'r') as infile, open(output_file, 'w') as outfile:
+        for line in infile:
+            updated_newick = add_outgroup(line, outgroup)
+            outfile.write(updated_newick + '\n')
+
+
+
+def main():
+    
+    data_path = '/fs/cbcb-lab/ekmolloy/jdai123/star-study/A_data/KPTracer-Data-Full'
+    result_dir = '/fs/cbcb-lab/ekmolloy/jdai123/star-study/H_bio_result_Full/star_cdp'
+    paup_dir = '/fs/cbcb-lab/ekmolloy/jdai123/star-study/H_bio_result_Full/paup'
+
+    folders = ['3457_Apc_T4_Fam', \
+    '3513_NT_T1_Fam', \
+    '3508_Apc_T2_Fam', \
+    '3519_Lkb1_T1_Fam', \
+    '3457_Apc_T1_Fam',\
+    '3460_Lkb1_T1_Fam',\
+    '3519_Lkb1_All',\
+    '3454_Lkb1_All',\
+    '3508_Apc_All',\
+    '3515_Lkb1_T1_Fam',\
+    '3515_Lkb1_All']
+    
+    
+    for folder in folders:
+        cur_paup_path = os.path.join(paup_dir, folder)
+        cur_res_path = os.path.join(result_dir, folder)
+        cur_data_path = os.path.join(data_path, folder)
+
+        if not os.path.exists(cur_res_path):
+            os.mkdir(cur_res_path)
+
+            
+        paup_usage_path = os.path.join(cur_paup_path, 'paup_usage.log')
+
+        paup_search_space_path = os.path.join(cur_paup_path, 'paup_trees.trees')
+
+        outgroup_camt_path = os.path.join(cur_res_path, folder + '_pruned_character_matrix_with_outg.csv')
+
+        if not os.path.exists(outgroup_camt_path) or True:
+            cmat_path = os.path.join(cur_data_path, folder + '_pruned_character_matrix.csv')
+            cmat_df = pd.read_csv(cmat_path, index_col=[0])
+            out_cmat_df = pd.DataFrame([{col: 0 for col in cmat_df.columns}], columns=cmat_df.columns[0:], index=[0])
+            out_cmat_df = pd.concat([out_cmat_df, cmat_df], ignore_index=False)
+            out_cmat_df.to_csv(outgroup_camt_path)
+
+
+        data_prefix = folder + "/"
+        print(data_prefix)
+
+        if not os.path.exists(os.path.join(cur_res_path, 'search_space.trees')):
+            process_newick_file(paup_search_space_path, os.path.join(cur_res_path, 'search_space.trees'), '0')    
+        
+        if not os.path.exists(os.path.join(cur_res_path, 'paup_usage.log')):
+            shutil.copy(paup_usage_path, os.path.join(cur_res_path, 'paup_usage.log'))
+
+        
+
+
+        
+                
+            
+
+if __name__ == '__main__':
+
+    main()
