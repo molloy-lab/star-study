@@ -25,20 +25,19 @@ def main():
         
 
         cmat_path = os.path.join(cur_data_path, "startle_format_cmat.csv")
-  
-        score_path = os.path.join(cur_res_path, 'RF0.csv')
 
-
-        true_tree_path = os.path.join(cur_data_path, 'true_tree.tre')
+        score_path = os.path.join(cur_res_path, 'RFSH.csv')
+                
+        true_tree_path = os.path.join(cur_data_path, 'SH_contract_true_tree.tre')
 
         star_cdp_tree_path = os.path.join(cur_res_path, 'star_cdp_one_sol.tre')
-       
+        
         data_prefix = folder
         print(data_prefix)
 
         if not os.path.exists(score_path) or True:
               
-            score_res = sp.run(['python3', comp_exe, '-t1', true_tree_path, '-t2', star_cdp_tree_path, '-c1','0', '-c2', '0', '-m', cmat_path], capture_output=True, text=True)
+            score_res = sp.run(['python3', comp_exe, '-t1', true_tree_path, '-t2', star_cdp_tree_path, '-c1','0', '-c2', '1', '-m', cmat_path], capture_output=True, text=True)
 
             if score_res.returncode == 0:
                 score_res = score_res.stdout

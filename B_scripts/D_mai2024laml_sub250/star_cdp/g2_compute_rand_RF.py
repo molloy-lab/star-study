@@ -26,12 +26,12 @@ def main():
 
         cmat_path = os.path.join(cur_data_path, "startle_format_cmat.csv")
   
-        score_path = os.path.join(cur_res_path, 'RF0.csv')
+        score_path = os.path.join(cur_res_path, 'Rand-RF0.csv')
 
 
         true_tree_path = os.path.join(cur_data_path, 'true_tree.tre')
 
-        star_cdp_tree_path = os.path.join(cur_res_path, 'star_cdp_one_sol.tre')
+        star_cdp_tree_path = os.path.join(cur_res_path, 'star_cdp_random_sol_trees.tre')
        
         data_prefix = folder
         print(data_prefix)
@@ -50,7 +50,7 @@ def main():
             else:
                 print("%%")
                 print(score_res.stderr)
-                raise Exception("Failed to compute score for " + cur_res_rep_path)
+                raise Exception("Failed to compute score for " + cur_res_path)
 
             
             with open(score_path, 'w', newline="") as score_file:

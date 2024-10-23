@@ -27,24 +27,22 @@ def main():
 
         cmat_path = os.path.join(cur_data_path, "startle_format_cmat.csv")
 
-        score_path = os.path.join(cur_res_path, 'RF0.csv')
-  
+        score_path = os.path.join(cur_res_path, 'SC-RF0.csv')
+
         true_tree_path = os.path.join(cur_data_path, 'true_tree.tre')
+       
 
-        
-
-        all_paup_trees_path = os.path.join(cur_res_path, 'paup_trees.trees')
-
-
+        strict_consensus_tree_path = os.path.join(cur_res_path, 'strict_consensus.tre')
+       
         data_prefix = folder
         print(data_prefix)
 
-        if not os.path.exists(all_paup_trees_path):
-            print(f'missing: {all_paup_trees_path}')
+        if not os.path.exists(strict_consensus_tree_path):
+            print(f'missing: {strict_consensus_tree_path}')
         else:
-            one_nwk_file = os.path.join(cur_res_path, 'one_nwk.newick')
             if not os.path.exists(score_path) or True:
-                score_res = sp.run(['python3', comp_exe, '-t1', true_tree_path, '-t2', one_nwk_file, '-c1','0', '-c2', '0', '-m', cmat_path], capture_output=True, text=True)
+                
+                score_res = sp.run(['python3', comp_exe, '-t1', true_tree_path, '-t2', strict_consensus_tree_path, '-c1','0', '-c2', '0', '-m', cmat_path], capture_output=True, text=True)
 
                 if score_res.returncode == 0:
                     score_res = score_res.stdout
@@ -60,6 +58,10 @@ def main():
                     score_file.write(f'{nl},{i1},{i2},{fn},{fp},{tp}, {fnrate},{fprate},{tprate}\n')
                     print(f'write {score_path}')
 
+                # os.remove(one_nwk_file)
+                
+            #else:
+                #os.remove(score_path)
 
 
 if __name__ == '__main__':
