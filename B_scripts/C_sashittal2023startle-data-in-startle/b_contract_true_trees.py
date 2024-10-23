@@ -52,12 +52,6 @@ for model_dir in models_dir:
         edges_with_mutations = set(zip(edge_labels_df['src'], edge_labels_df['dst']))
         all_edges = set(zip(edge_list_df['src'], edge_list_df['dst']))
 
-        # print(all_edges)
-        # print(edges_with_mutations)
-        # exit(0)
-
-        # if all_edges == edges_with_mutations:
-        #     print("All edges occur mutations!")
 
         tree = defaultdict(list)
 

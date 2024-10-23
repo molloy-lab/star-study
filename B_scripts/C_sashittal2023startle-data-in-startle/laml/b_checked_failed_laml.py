@@ -6,7 +6,7 @@ import subprocess as sp
 def main():
     
 
-    result_dir = '/fs/cbcb-lab/ekmolloy/jdai123/star-study/result_data_in_startle/star_cdp-rand'
+    result_dir = '/fs/cbcb-lab/ekmolloy/jdai123/star-study/result_data_in_startle/laml'
 
 
     folders = [f for f in os.listdir(result_dir) if os.path.isdir(os.path.join(result_dir, f))]
@@ -23,9 +23,9 @@ def main():
             cur_rep_res_path = os.path.join(cur_res_path, rep)
 
 
-            sbatch_path = os.path.join(cur_rep_res_path, 'run_star_cdp.sbatch')
+            sbatch_path = os.path.join(cur_rep_res_path, 'run_laml.sbatch')
             
-            tree_path = os.path.join(cur_rep_res_path, 'star_cdp_one_sol.tre')
+            tree_path = os.path.join(cur_rep_res_path, 'laml_output-1_trees.nwk')
 
             if not os.path.exists(tree_path):
                 failed_jobs.append(cur_rep_res_path)
