@@ -1,3 +1,3 @@
 # star-study
 Here we provied scripts that helps reproduce the results in the paper "Dynamic programming algorithms for fast and accurate cell lineage tree reconstruction from CRISPR-based lineage tracing data". However, they are essentially just a "wrapper" or "caller" of those commands we listed in the paper. Therefore, to reproduce our results, we also suggest go to the box and check all README files in our results on box.
-We make our data avaibale at (box)[https://umd.app.box.com/folder/290092756447?s=hyw8dcn2rp8p49uxhpptg7rrrp4ckev4]. 
+We make our data avaibale at [box](https://umd.app.box.com/folder/290092756447?s=hyw8dcn2rp8p49uxhpptg7rrrp4ckev4). 
