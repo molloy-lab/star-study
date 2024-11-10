@@ -1,0 +1,4 @@
+data,total_cell,#pruned_eq_class,mean_size_pruned_eq_class,mean_#sites_pruned_eq_class,#dedup_eq_class,mean_size_dedup_eq_class,mean_#sites_dedup_eq_class,#depruned_dedup_eq_class,mean_size_deprune_deduplicate_eq_class,mean_#sites_depruned_deduplicate_eq_class
+3513_NT_T1_Fam,1227,14,81.78571428571429,1.9285714285714286,20,56.6,1.85,5,4.0,2.0
+3724_NT_All,21108,275,72.80363636363636,1.3236363636363637,324,61.08641975308642,1.2592592592592593,30,5.9,1.2666666666666666
+3515_LKb1_T1_Fam,1878,80,12.4875,1.5,73,11.863013698630137,1.63013698630137,7,5.285714285714286,2.0

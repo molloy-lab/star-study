@@ -1,0 +1,4 @@
+Tumor Data,# of cells in total,# of cells after deduplicating,# of cells after pruning
+3513_NT_T1_Fam,1227,101,86
+3515_Lkb1_T1_Fam,1878,1013,878
+3724_NT_All,21108,1461,1207
