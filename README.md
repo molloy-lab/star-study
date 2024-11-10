@@ -1,3 +1,5 @@
-# star-study
-Here we provied scripts that helps reproduce the results in the paper "Dynamic programming algorithms for fast and accurate cell lineage tree reconstruction from CRISPR-based lineage tracing data". The bash scprits are used to reograninze all out biological results(See ```bio-result.tar.gz``` on [box]((https://umd.app.box.com/folder/290092756447?s=hyw8dcn2rp8p49uxhpptg7rrrp4ckev4)) for the results). However, the python scrpits in [B_scripts](https://github.com/molloy-lab/star-study/tree/main/B_scripts) are essentially just a "wrapper" or "caller" of those commands we listed in the paper. Therefore, to reproduce our results, we also suggest go to the box and check all README files in our results on box.
-We make our data avaibale at [box](https://umd.app.box.com/folder/290092756447?s=hyw8dcn2rp8p49uxhpptg7rrrp4ckev4). 
+Here we provied scripts to reproduce the results in the paper "Dynamic programming algorithms for fast and accurate cell lineage tree reconstruction from CRISPR-based lineage tracing data". 
+
+The python scrpits in [B_scripts](https://github.com/molloy-lab/star-study/tree/main/B_scripts) are essentially just a "wrapper" or "caller" of those commands we listed in the paper. The bash scripts are used to reorganize all out biological results (see ```bio-result.tar.gz``` on  for the results). The data files (e.g., trees) are temporarily available on [Box]((https://umd.app.box.com/folder/290092756447?s=hyw8dcn2rp8p49uxhpptg7rrrp4ckev4)) until they can be moved to a more permanent location; be sure to check all README files on Box. 
+
+The CSV files as well as scripts for making plots and tables is under the [summary](summary) directory.
