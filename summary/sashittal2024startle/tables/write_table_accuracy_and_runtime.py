@@ -104,8 +104,8 @@ if __name__ == "__main__":
     sys.stdout.write("\\begin{tabular}{c c c c c c c c c c c c}\n")
     sys.stdout.write("\\toprule \n")
 
-    sys.stdout.write("\\# of & \\# of & Startle & LAML & Cassiopeia & StarCDP & StarCDP & PAUP* & Startle & Startle & StarCDP & PAUP* \\\\\n")
-    sys.stdout.write("cells & chars & NNI (C++) & & Greedy & Rand & Bias & & NNI (Py) & ILP & SC & SC \\\\\n")
+    sys.stdout.write("\\# of & \\# of & Startle   & LAML & Cassiopeia & StarCDP & StarCDP & PAUP* & Startle  & Startle & StarCDP & PAUP* \\\\\n")
+    sys.stdout.write("cells  & chars  & NNI (C++) &      & Greedy     & Rand    & Bias    &       & NNI (Py) & ILP     & SC      & SC \\\\\n")
     sys.stdout.write("\\midrule\n")
 
     mthds = ["Startle-NNI (C++)",
