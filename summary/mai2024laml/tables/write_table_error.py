@@ -106,8 +106,8 @@ if __name__ == "__main__":
         sys.stdout.write("\\begin{tabular}{c c c c c c c c c}\n")
         sys.stdout.write("\\toprule \n")
 
-        sys.stdout.write("Proportion & Cassiopeia & StarCDP & StarCDP & PAUP* & PAUP* & StarCDP & Startle & LAML \\\\\n")
-        sys.stdout.write("silencing & Greedy & Bias & Rand & & SC & SC & NNI (C++) & \\\\\n")
+        sys.stdout.write("Proportion & Cassiopeia & StarCDP & StarCDP & PAUP* & PAUP* & StarCDP & Startle   & LAML \\\\\n")
+        sys.stdout.write("silencing  & Greedy     & Bias    & Rand    &       & SC    & SC      & NNI (C++) & \\\\\n")
         sys.stdout.write("\\midrule\n")
 
         mthds = ["Cassiopeia-Greedy",
