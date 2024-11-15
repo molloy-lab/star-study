@@ -4,14 +4,6 @@ import sys
 
 
 if __name__ == "__main__":
-    mthds = ["Cassiopeia-Hybrid",
-             "startle_nni",
-             "star_cdp_one_sol",
-             "star_cdp_rand_sol",
-             "star_cdp_sc",
-             "paup_one_sol",
-             "paup_sc"]
-
     metrics = ["TP (No contraction)",
                "FP (No contraction)",
                "FN (No contraction)",
@@ -56,9 +48,17 @@ if __name__ == "__main__":
         sys.stdout.write("\\begin{tabular}{l c c c c c c c c}\n")
         sys.stdout.write("\\toprule \n")
 
-        sys.stdout.write("Tree & Analysis & Cassiopeia & Startle & StarCDP & StarCDP & StarCDP & PAUP* & PAUP*\\\\\n")
-        sys.stdout.write("Comparison      & Pipeline & Hybrid     & NNI (C++) & Bias  & Rand    & SC      &       & SC\\\\\n")
+        sys.stdout.write("Tree       & Analysis & Cassiopeia & Startle   & StarCDP & StarCDP & StarCDP & PAUP* & PAUP*\\\\\n")
+        sys.stdout.write("Comparison & Pipeline & Hybrid     & NNI (C++) & Bias    & Rand    & SC      &       & SC\\\\\n")
         sys.stdout.write("\\midrule\n")
+
+        mthds = ["Cassiopeia-Hybrid",
+                 "startle_nni",
+                 "star_cdp_one_sol",
+                 "star_cdp_rand_sol",
+                 "star_cdp_sc",
+                 "paup_one_sol",
+                 "paup_sc"]
 
         for met in metrics:
             sys.stdout.write("\\multirow{6}{2cm}{%s}\n" % met)

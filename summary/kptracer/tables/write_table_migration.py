@@ -4,14 +4,6 @@ import sys
 
 
 if __name__ == "__main__":
-    mthds = ["Cassiopeia-Hybird",
-             "startle_nni",
-             "star_cdp_one_sol",
-             "star_cdp_rand_sol",
-             "star_cdp_sc",
-             "paup_one_sol",
-             "paup_sc"]
-
     pipelines = ["1a", "2a", "1b", "2b", "1c", "2c"]
 
     for data in [3]:
@@ -56,9 +48,17 @@ if __name__ == "__main__":
         sys.stdout.write("\\begin{tabular}{l c c c c c c c c}\n")
         sys.stdout.write("\\toprule \n")
 
-        sys.stdout.write("Migration & Analysis & Cassiopeia & Startle & StarCDP & StarCDP & StarCDP & PAUP* & PAUP*\\\\\n")
-        sys.stdout.write("Type      & Pipeline & Hybrid     & NNI (C++) & Bias  & Rand    & SC      &       & SC\\\\\n")
+        sys.stdout.write("Migration & Analysis & Cassiopeia & Startle   & StarCDP & StarCDP & StarCDP & PAUP* & PAUP*\\\\\n")
+        sys.stdout.write("Type      & Pipeline & Hybrid     & NNI (C++) & Bias    & Rand    & SC      &       & SC\\\\\n")
         sys.stdout.write("\\midrule\n")
+
+        mthds = ["Cassiopeia-Hybird",
+                 "startle_nni",
+                 "star_cdp_one_sol",
+                 "star_cdp_rand_sol",
+                 "star_cdp_sc",
+                 "paup_one_sol",
+                 "paup_sc"]
 
         for mg in migrations:
             sys.stdout.write("\\multirow{6}{2cm}{%s}\n" % mg.replace('->', '$\\mapsto$'))

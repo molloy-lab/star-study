@@ -4,14 +4,6 @@ import sys
 
 
 if __name__ == "__main__":
-    mthds = [#"Cassiopeia-Hybird",
-             "startle_nni",
-             "star_cdp_one_sol",
-             "star_cdp_rand_sol",
-             "star_cdp_sc",
-             "paup_one_sol",
-             "paup_sc"]
-
     pipelines = ["1a", "2a", "1b", "2b", "1c", "2c"]
 
     sys.stdout.write("\\begin{table}[!h]\n")
@@ -24,8 +16,15 @@ if __name__ == "__main__":
     sys.stdout.write("\\toprule \n")
 
     sys.stdout.write("Tumor & Analysis  & Startle   & StarCDP & StarCDP & StarCDP & PAUP* & PAUP*\\\\\n")
-    sys.stdout.write("Data  & Pipeline & NNI (C++) & Bias    & Rand    & SC      &       & SC\\\\\n")
+    sys.stdout.write("Data  & Pipeline  & NNI (C++) & Bias    & Rand    & SC      &       & SC\\\\\n")
     sys.stdout.write("\\midrule\n")
+
+    mthds = ["startle_nni",
+             "star_cdp_one_sol",
+             "star_cdp_rand_sol",
+             "star_cdp_sc",
+             "paup_one_sol",
+             "paup_sc"]
 
     for data in [3, 2, 1]:
         if data == 1:
