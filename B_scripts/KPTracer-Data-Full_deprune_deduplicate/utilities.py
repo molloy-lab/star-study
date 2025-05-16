@@ -1,3 +1,6 @@
+# This code is from Startle.
+# https://github.com/raphael-group/startle/blob/main/scripts/utilities.py
+
 import pandas as pd
 import seaborn as sns
 import numpy as np
